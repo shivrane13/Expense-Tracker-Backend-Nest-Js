@@ -2,7 +2,7 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 RUN npm ci
 
@@ -12,17 +12,19 @@ RUN npx prisma generate
 
 RUN npm run build
 
-FROM node:22-alpine 
-WORKDIR /app
-COPY package.json package-lock.json ./
+FROM node:22-alpine
 
-RUN npm ci --omit=dev
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/generated ./generated
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 
 EXPOSE 3000
-CMD ["node", "dist/src/main.js"]
 
-
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main.js"]

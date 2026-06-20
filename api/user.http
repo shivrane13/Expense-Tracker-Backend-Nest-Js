@@ -1,0 +1,72 @@
+@baseUrl = http://localhost:3000/api/user
+
+### Create User
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+    "name" : "Gaurav Rane",
+    "email" : "gaurav@1234gmail.com",
+    "mobile" : "1234567890",
+    "password" : "123",
+    "dailyBudget" : 1000
+    //"img" : "https://example.com/profile.jpg
+}
+
+
+### Get User by ID
+GET {{baseUrl}}/1
+Content-Type: application/json
+
+
+### Get All Users
+POST {{baseUrl}}/read
+Content-Type: application/json
+
+
+### Get all user by pagination
+POST {{baseUrl}}/readPgn
+Content-Type: application/json
+
+{
+    "searchTitle" : "",
+    "page": 1,
+    "limit": 10
+}
+
+### Update User
+POST {{baseUrl}}/update
+Content-Type: application/json
+
+  {
+      "id": 3,
+      "name": "Gaurav Rane",
+      "email": "gaurav@1234gmail.com",
+      "mobile": "1234567890",
+      //"img": "https://example.com/profile.jpg",
+      "dailyBudget": 200
+    }
+//{
+//    "id" : 1,
+//    "name" : "Gaurav Rane Updated",
+//    "email" : "gaurav.updated@1234gmail.com",
+//    "mobile" : "8177837980",
+//    "img" : "https://example.com/profile-updated.jpg"
+//}
+
+### Delete User
+POST {{baseUrl}}/delete
+Content-Type: application/json
+
+{
+    "id" : 2
+}
+
+### Upload Profile Image
+POST {{baseUrl}}/uploadProfileImage
+Content-Type: multipart/form-data
+
+{
+    "file" : "C:/Users/foxberry/Downloads/Screenshot 2026-06-17 114812.png",
+    "id" : 3
+}

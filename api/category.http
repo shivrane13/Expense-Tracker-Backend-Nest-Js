@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:3000/api/category
+
+###create category
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+    "name": "Other Income",
+    "iconImg": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/2795.png",
+    "type": "INCOME"
+  }
+
+###read category
+POST {{baseUrl}}/read
+Content-Type: application/json
+
+{
+    // "type": "INCOME"
+}

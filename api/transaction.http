@@ -1,0 +1,73 @@
+@baseUrl = http://localhost:3000/api/transaction
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkdhdXJhdiBSYW5lIiwiaWF0IjoxNzgxODY2MTM1LCJleHAiOjE3ODE4Njk3MzV9.d5kKTTm3b0HQAP9W987G1rZmQ--5MPtNf2vPiI3ij18
+###create transaction
+POST {{baseUrl}}/create
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Salary",
+    "amount": 20000,
+    "description": "Monthly salary",
+    "categoryId": 5
+}
+
+###get transaction by id
+GET {{baseUrl}}/1
+Authorization: Bearer {{token}}
+
+
+###get transactions
+POST {{baseUrl}}/read
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+###get transactions by pagination
+POST {{baseUrl}}/readPgn
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "type": "EXPENSE",
+    "page" : 1,
+    "limit" : 10
+}
+
+
+###update transaction
+PUT {{baseUrl}}/update/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Updated Salary",
+    "amount": 25000,
+    "description": "Updated monthly salary",
+    "categoryId": 5
+}
+
+###delete transaction
+POST {{baseUrl}}/delete
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "id" : 1
+}
+
+### Dashboard Transaction Summary
+POST {{baseUrl}}/dashboardList
+Authorization: Bearer {{token}}
+
+
+### Dashboard Summary
+POST {{baseUrl}}/dashboardSummary
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "fromDate": "2026-06-01",
+    "toDate": "2026-06-30"
+}
+
